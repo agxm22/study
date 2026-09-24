@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter Reading - padhle bhai</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Inter:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Top Navbar -->
+    <nav class="navbar glass">
+        <div class="container nav-content">
+            <div class="logo">
+                <a href="index.html" style="color: inherit; text-decoration: none; display: flex; align-items: center; gap: 10px;">
+                    <h1>khaan sir ke diwane</h1>
+                </a>
+            </div>
+            <div class="nav-actions">
+                <button id="openSearchBtn" class="nav-btn" title="Search all topics">🔍 <span>Search</span></button>
+                <a href="index.html" class="nav-btn" style="text-decoration: none;">← Dashboard</a>
+                <button id="themeToggle" class="theme-toggle" title="Toggle Light / Dark Mode">🌗</button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container">
+        <!-- Chapter Navigation Bar & Study Tabs -->
+        <div class="chapter-nav-bar">
+            <div class="chapter-tabs" id="studyTabs">
+                <button class="tab-btn active" data-tab="notes">📖 Study Notes</button>
+                <button class="tab-btn" data-tab="quick-revision">⚡ Quick Revision</button>
+                <button class="tab-btn" data-tab="five-min">⏱️ 5-Min Revision</button>
+                <button class="tab-btn" data-tab="flashcards">🗂️ Flashcards (<span id="fcCountBadge">0</span>)</button>
+                <button class="tab-btn" data-tab="quiz">📝 Self-Test Quiz</button>
+                <button class="tab-btn" data-tab="answers">✍️ Answer Tips</button>
+            </div>
+            <div style="display: flex; gap: 10px; align-items: center;">
+                <button id="markCompleteBtn" class="btn btn-secondary">
+                    <span id="markCompleteIcon">○</span> <span id="markCompleteText">Mark as Completed</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Tab 1: Detailed Study Notes Layout -->
+        <div id="tabContentNotes" class="tab-content-area">
+            <div class="reading-layout">
+                <!-- Sticky Table of Contents -->
+                <aside class="toc-sidebar glass">
+                    <h3>📌 Table of Contents</h3>
+                    <ul class="toc-list" id="tocList">
+                        <!-- Headings injected dynamically -->
+                    </ul>
+                </aside>
+                
+                <!-- Main Textbook Notes Area -->
+                <article class="chapter-content-box glass">
+                    <header class="chapter-header">
+                        <div class="chapter-meta">
+                            <span id="chapterNumberLabel">Chapter X</span>
+                            <span>•</span>
+                            <span id="readTimeLabel">XX min read</span>
+                            <span>•</span>
+                            <span id="chapterStatusLabel" class="card-status-badge">In Progress</span>
+                        </div>
+                        <h1 id="chapterTitle" style="font-size: 2.3rem; margin-bottom: 12px;">Chapter Title</h1>
+                        <p id="chapterDesc" style="color: var(--text-muted); font-size: 1.05rem; max-width: 680px; margin: 0 auto;"></p>
+                    </header>
+
+                    <!-- Mobile Collapsible Table of Contents -->
+                    <details class="mobile-toc-details glass" id="mobileTocContainer">
+                        <summary class="mobile-toc-summary">
+                            <span>📌 Table of Contents (Tap to view sections)</span>
+                            <span class="mobile-toc-arrow">▼</span>
+                        </summary>
+                        <ul class="toc-list" id="mobileTocList">
+                            <!-- Injected by JS -->
+                        </ul>
+                    </details>
+
+                    <!-- Key Facts Visual Box -->
+                    <div class="key-facts-box" id="keyFactsContainer">
+                        <!-- Injected by JS -->
+                    </div>
+                    
+                    <!-- Dynamic Educational Content with Integrated Doodles -->
+                    <div id="dynamicContent">
+                        <!-- Injected by JS -->
+                    </div>
+
+                    <!-- End of Chapter Navigation -->
+                    <div style="margin-top: 50px; padding-top: 24px; border-top: 1px solid var(--glass-border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px;">
+                        <button id="prevChapterBtn" class="btn btn-secondary">← Previous Chapter</button>
+                        <button id="practiceFlashcardsBtn" class="btn btn-primary">Practice Flashcards →</button>
+                        <button id="nextChapterBtn" class="btn btn-secondary">Next Chapter →</button>
+                    </div>
+                </article>
+            </div>
+        </div>
+
+        <!-- Tab 2: Quick Revision -->
+        <div id="tabContentQuickRevision" class="tab-content-area hidden">
+            <article class="chapter-content-box glass" style="max-width: 900px; margin: 0 auto;">
+                <h2 style="font-size: 1.8rem; margin-bottom: 14px;">⚡ Quick Revision: Key Points & Connections</h2>
+                <p style="color: var(--text-muted); margin-bottom: 24px;">
+                    Essential revision points, historical causes, and cause → event → effect links designed for rapid recall before the exam.
+                </p>
+                <div id="quickRevisionContent">
+                    <!-- Injected by JS -->
+                </div>
+            </article>
+        </div>
+
+        <!-- Tab 3: 5-Minute Revision -->
+        <div id="tabContentFiveMin" class="tab-content-area hidden">
+            <article class="chapter-content-box glass" style="max-width: 850px; margin: 0 auto;">
+                <h2 style="font-size: 1.8rem; margin-bottom: 14px;">⏱️ 5-Minute Rapid Revision</h2>
+                <p style="color: var(--text-muted); margin-bottom: 24px;">
+                    Read this super-compact digest in under 5 minutes right before attempting test questions.
+                </p>
+                <div id="fiveMinContent" style="font-size: 1.05rem; line-height: 1.8;">
+                    <!-- Injected by JS -->
+                </div>
+            </article>
+        </div>
+
+        <!-- Tab 4: Interactive Flashcards -->
+        <div id="tabContentFlashcards" class="tab-content-area hidden">
+            <div class="flashcards-container">
+                <div style="text-align: center; margin-bottom: 18px;">
+                    <h2 style="font-size: 1.8rem; margin-bottom: 6px;">🗂️ Interactive Concept Flashcards</h2>
+                    <p style="color: var(--text-muted); font-size: 0.92rem;">Click the card to flip between Question and Answer.</p>
+                </div>
+
+                <div class="fc-scene" id="flashcardScene">
+                    <div class="flashcard" id="flashcardElement">
+                        <div class="card-face card-face-front">
+                            <div class="fc-category" id="fcFrontCategory">Historical Term</div>
+                            <div class="fc-center-content">
+                                <div class="fc-prompt" id="fcFrontText">Term or Question</div>
+                            </div>
+                            <div class="fc-hint">👆 Click to Flip Card</div>
+                        </div>
+                        <div class="card-face card-face-back">
+                            <div class="fc-category" style="color: var(--accent-color);">Explanation & Significance</div>
+                            <div class="fc-center-content">
+                                <div class="fc-explanation" id="fcBackText">Detailed explanation and answer.</div>
+                            </div>
+                            <div class="fc-hint">👆 Click to Flip Back</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Flashcard Controls -->
+                <div class="fc-toolbar">
+                    <div style="font-weight: 600; font-size: 0.95rem;">
+                        Card <span id="fcCurrentIndex">1</span> of <span id="fcTotalCount">8</span>
+                    </div>
+                    <div class="fc-controls">
+                        <button id="fcReviseBtn" class="btn btn-secondary" title="Mark for further revision">🔄 Revise Again</button>
+                        <button id="fcKnowBtn" class="btn btn-primary" style="background: #2F855A;" title="Mark as mastered">✓ Know It</button>
+                        <button id="fcShuffleBtn" class="btn btn-secondary" title="Shuffle flashcards">🔀 Shuffle</button>
+                        <button id="fcNextBtn" class="btn btn-secondary">Next →</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 5: Self-Test Quiz -->
+        <div id="tabContentQuiz" class="tab-content-area hidden">
+            <div class="quiz-wrapper">
+                <div style="text-align: center; margin-bottom: 28px;">
+                    <h2 style="font-size: 1.8rem; margin-bottom: 6px;">📝 Self-Assessment Quiz</h2>
+                    <p style="color: var(--text-muted); font-size: 0.92rem;">
+                        Test your conceptual clarity across MCQs, True/False, and structured questions. Answers are revealed only after submission.
+                    </p>
+                </div>
+
+                <div id="quizQuestionsContainer">
+                    <!-- Injected by JS -->
+                </div>
+
+                <div style="text-align: center; margin-top: 24px;">
+                    <button id="submitQuizBtn" class="btn btn-primary" style="font-size: 1.05rem; padding: 12px 28px;">
+                        Submit & Evaluate Answers
+                    </button>
+                </div>
+
+                <div id="quizScoreBanner" class="quiz-score-banner glass">
+                    <h3 id="quizScoreTitle" style="font-size: 1.5rem; margin-bottom: 8px;">Your Score</h3>
+                    <p id="quizScoreDetails" style="font-size: 1rem; color: var(--text-muted); margin-bottom: 16px;"></p>
+                    <button id="retryQuizBtn" class="btn btn-secondary">Try Again</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 6: Answer-Writing Guide -->
+        <div id="tabContentAnswers" class="tab-content-area hidden">
+            <article class="chapter-content-box glass" style="max-width: 900px; margin: 0 auto;">
+                <h2 style="font-size: 1.8rem; margin-bottom: 14px;">✍️ Chapter Model Answer Blueprints</h2>
+                <p style="color: var(--text-muted); margin-bottom: 24px;">
+                    Step-by-step illustrations of how to structure high-scoring answers for questions relating to this chapter in an 80-mark examination.
+                </p>
+                <div id="modelAnswersContent">
+                    <!-- Injected by JS -->
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <!-- Global Search Modal -->
+    <div class="modal-overlay" id="searchModal">
+        <div class="search-modal-box glass">
+            <div class="search-input-wrap">
+                <span style="font-size: 1.3rem;">🔍</span>
+                <input type="text" id="globalSearchInput" class="search-input" placeholder="Search people, places, dates, terms, concepts..." autocomplete="off">
+                <button id="closeSearchBtn" style="background: none; border: none; font-size: 1.4rem; cursor: pointer; color: var(--text-muted);">&times;</button>
+            </div>
+            <div class="search-results-list" id="searchResultsList">
+                <p style="text-align: center; color: var(--text-muted); padding: 30px 0;">Start typing to search across all 8 chapters...</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts: Chapter Data Modules -->
+    <script src="data/chapter1.js"></script>
+    <script src="data/chapter2.js"></script>
+    <script src="data/chapter3.js"></script>
+    <script src="data/chapter4.js"></script>
+    <script src="data/chapter5.js"></script>
+    <script src="data/chapter6.js"></script>
+    <script src="data/chapter7.js"></script>
+    <script src="data/chapter8.js"></script>
+    <script src="data/data.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
